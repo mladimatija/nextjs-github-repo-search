@@ -1,11 +1,12 @@
 import { Box, Container, Heading, Stack } from "@chakra-ui/react";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useDebouncedQuery } from "../hooks/useDebouncedQuery";
 import { Octokit } from "octokit";
 import SkeletonLoader from "./SkeletonLoader";
 
 import { usePagination } from "@ajna/pagination";
 import NoResultsText from "./NoResultsText";
+import type {Repository} from "./ItemsContainer";
 import ItemsContainer from "./ItemsContainer";
 import SearchBar from "./SearchBar";
 import PaginationContainer from "./PaginationContainer";
@@ -13,6 +14,7 @@ import PaginationContainer from "./PaginationContainer";
 const MainContent = () => {
 	const itemsPerPage = 12;
 	const [searchValue, setSearchValue] = useState("");
+	const [data, setData] = useState<Repository[]>([]);
 	const [resultsTotal, setResultsTotal] = useState<number | undefined>(undefined);
 	// let's keep Octokit in useMemo since we don't want it to reinit on every component re-render
 	const octokit = useMemo(
@@ -35,7 +37,7 @@ const MainContent = () => {
 		},
 	});
 
-	// TODO api error handling
+	// searchQuery.data.data - a bit of a weird structure but first "data" obj comes from tanstack-query while second one is from Github's REST API
 	const searchQuery = useDebouncedQuery(
 		{
 			queryKey: searchValue.length ? ["searchRepos", searchValue, itemsPerPage, currentPage] : [],
@@ -48,18 +50,21 @@ const MainContent = () => {
 					});
 				}
 			},
+			onSuccess: (result) => {
+				const items = result?.data.items;
+				setData(items ?? []);
+
+				if (items?.length) {
+					setResultsTotal(result?.data.total_count);
+				}
+			}
 		},
+		// TODO api error handling
 		() => ({ data: { items: [] } }),
 		250
 	);
 
 	const handlePageChange = (nextPage: number): void => setCurrentPage(nextPage);
-
-	const data = useMemo(() => searchQuery?.data?.data?.items, [searchQuery?.data?.data?.items]);
-
-	useEffect(() => {
-		setResultsTotal(searchQuery?.data?.data?.total_count);
-	}, [data, searchQuery?.data?.data?.total_count]);
 
 	return (
 		<Box as="main" height="100vh" overflowY="auto">
