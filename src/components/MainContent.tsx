@@ -35,6 +35,7 @@ const MainContent = () => {
 		},
 	});
 
+	// TODO api error handling
 	const searchQuery = useDebouncedQuery(
 		{
 			queryKey: searchValue.length ? ["searchRepos", searchValue, itemsPerPage, currentPage] : [],
@@ -71,17 +72,18 @@ const MainContent = () => {
 					<SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
 				</Stack>
 
-				<PaginationContainer
-					pagesCount={pagesCount}
-					currentPage={currentPage}
-					onPageChange={handlePageChange}
-					pages={pages}
-					isFetching={searchQuery.isFetching}
-					hasData={!!searchValue.length}
-					searchValue={searchValue}
-					itemsPerPage={itemsPerPage}
-					resultsTotal={resultsTotal}
-				/>
+				{!!searchValue.length && (
+					<PaginationContainer
+						pagesCount={pagesCount}
+						currentPage={currentPage}
+						onPageChange={handlePageChange}
+						pages={pages}
+						isFetching={searchQuery.isFetching}
+						itemsPerPage={itemsPerPage}
+						resultsTotal={resultsTotal}
+						currentItemsLength={data?.length}
+					/>
+				)}
 
 				<Container py={{ base: "4", md: "8" }} justifyItems="center">
 					<Stack spacing={{ base: "8", lg: "6" }}>
@@ -95,17 +97,18 @@ const MainContent = () => {
 					) : null}
 				</Container>
 
-				<PaginationContainer
-					pagesCount={pagesCount}
-					currentPage={currentPage}
-					onPageChange={handlePageChange}
-					pages={pages}
-					isFetching={searchQuery.isFetching}
-					hasData={!!searchValue.length}
-					searchValue={searchValue}
-					itemsPerPage={itemsPerPage}
-					resultsTotal={resultsTotal}
-				/>
+				{!!searchValue.length && (
+					<PaginationContainer
+						pagesCount={pagesCount}
+						currentPage={currentPage}
+						onPageChange={handlePageChange}
+						pages={pages}
+						isFetching={searchQuery.isFetching}
+						itemsPerPage={itemsPerPage}
+						resultsTotal={resultsTotal}
+						currentItemsLength={data?.length}
+					/>
+				)}
 			</Container>
 		</Box>
 	);

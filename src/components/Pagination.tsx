@@ -12,28 +12,31 @@ import type { PaginationProps } from "@ajna/pagination/dist/components/Paginatio
 import { Spinner, Text } from "@chakra-ui/react";
 import type { FC } from "react";
 
+// TODO responsive styles
+// TODO disable pagination butons on no results
+
 const Pagination: FC<PaginationExtendedProps> = ({
 	pages,
 	pagesCount,
 	currentPage,
 	onPageChange,
 	isFetching,
-	hasData,
+	resultsTotal,
+	currentItemsLength
 }) => {
 	return (
 		<PaginationCmp pagesCount={pagesCount} currentPage={currentPage} onPageChange={onPageChange}>
 			<PaginationContainer align="center" justify="space-between" py={4} w="full" gap={4}>
-				{hasData && (
-					<PaginationPrevious
-						_hover={{
-							bg: "blue.600",
-						}}
-						bg="blue.500"
-					>
-						<Text color="white">Previous</Text>
-					</PaginationPrevious>
-				)}
-				{!isFetching && (
+				<PaginationPrevious
+					isDisabled={currentItemsLength === 0}
+					_hover={{
+						bg: "blue.600",
+					}}
+					bg="blue.500"
+				>
+					<Text color="white">Previous</Text>
+				</PaginationPrevious>
+				{!isFetching && !!resultsTotal && (
 					<PaginationPageGroup
 						isInline
 						align="center"
@@ -60,16 +63,16 @@ const Pagination: FC<PaginationExtendedProps> = ({
 					</PaginationPageGroup>
 				)}
 				{isFetching && <Spinner color="blue.500" />}
-				{hasData && (
-					<PaginationNext
-						_hover={{
-							bg: "blue.600",
-						}}
-						bg="blue.500"
-					>
-						<Text color="white">Next</Text>
-					</PaginationNext>
-				)}
+
+				<PaginationNext
+					isDisabled={currentItemsLength === 0}
+					_hover={{
+						bg: "blue.600",
+					}}
+					bg="blue.500"
+				>
+					<Text color="white">Next</Text>
+				</PaginationNext>
 			</PaginationContainer>
 		</PaginationCmp>
 	);
@@ -80,5 +83,6 @@ export default Pagination;
 export interface PaginationExtendedProps extends PaginationProps {
 	pages: number[];
 	isFetching: boolean;
-	hasData: boolean;
+	resultsTotal: number | undefined;
+	currentItemsLength: number | undefined;
 }

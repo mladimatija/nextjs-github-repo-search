@@ -24,6 +24,7 @@ const Header = () => (
 					alt="GitHub Repo stars"
 					src="https://img.shields.io/github/stars/mladimatija/nextjs-github-repo-search?logoColor=blue&style=social"
 					priority={true}
+					unoptimized={true}
 				></Image>
 			</Link>
 		</Flex>

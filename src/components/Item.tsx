@@ -5,6 +5,8 @@ import { AiOutlineFork } from "react-icons/ai";
 import { useState } from "react";
 import type { Repository } from "./ItemsContainer";
 
+// TODO create generator function
+
 const Item = ({ data }: { data: Repository }) => {
 	const [isHovering, setIsHovering] = useState(false);
 
@@ -22,7 +24,7 @@ const Item = ({ data }: { data: Repository }) => {
 			onMouseEnter={() => setIsHovering(true)}
 			onMouseLeave={() => setIsHovering(false)}
 		>
-			<Flex direction="column" justifyContent="space-between" basis="100%">
+			<Flex direction="column" justifyContent="space-between" basis="100%" wordBreak="break-word">
 				<Container px={0}>
 					<Link href={data.html_url} target="_blank" _hover={{ color: "blue.500" }}>
 						<Icon as={FiExternalLink} boxSize="9" verticalAlign="middle" title="Repository link" />

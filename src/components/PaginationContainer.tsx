@@ -11,47 +11,42 @@ const PaginationContainer: FC<PaginationContainerProps> = ({
 	resultsTotal,
 	onPageChange,
 	isFetching,
-	hasData,
-	searchValue,
-}) => {
-	return (
-		<>
-			<Container py={{ base: "4", md: "8" }}>
-				<HStack>
-					<Divider />
-				</HStack>
-			</Container>
-			<Container>
-				<Box textAlign="center">
-					{searchValue.length && hasData ? (
-						<span>
-							Showing <strong>{currentPage * itemsPerPage + 1}</strong> -{" "}
-							<strong>{currentPage * itemsPerPage + itemsPerPage}</strong> of <strong>{resultsTotal}</strong> results.
-						</span>
-					) : isFetching ? (
-						<Spinner color="blue.500" />
-					) : null}
-				</Box>
+	currentItemsLength,
+}) => (
+	<>
+		<Container py={{ base: "4", md: "8" }}>
+			<HStack>
+				<Divider />
+			</HStack>
+		</Container>
+		<Container>
+			<Box textAlign="center">
+				{!isFetching && resultsTotal !== 0 ? (
+					<span>
+						Showing <strong>{currentPage * itemsPerPage + 1}</strong> -{" "}
+						<strong>{currentPage * itemsPerPage + (currentItemsLength || 0)}</strong> of <strong>{resultsTotal}</strong>{" "}
+						results.
+					</span>
+				) : isFetching ? (
+					<Spinner color="blue.500" />
+				) : null}
+			</Box>
 
-				{!!searchValue.length && (
-					<Pagination
-						pagesCount={pagesCount}
-						currentPage={currentPage}
-						onPageChange={onPageChange}
-						pages={pages}
-						isFetching={isFetching}
-						hasData={!!searchValue.length}
-					/>
-				)}
-			</Container>
-		</>
-	);
-};
+			<Pagination
+				pagesCount={pagesCount}
+				currentPage={currentPage}
+				onPageChange={onPageChange}
+				pages={pages}
+				isFetching={isFetching}
+				resultsTotal={resultsTotal}
+				currentItemsLength={currentItemsLength || 0}
+			/>
+		</Container>
+	</>
+);
 
 export default PaginationContainer;
 
 interface PaginationContainerProps extends PaginationExtendedProps {
-	searchValue: string;
 	itemsPerPage: number;
-	resultsTotal: number | undefined;
 }
