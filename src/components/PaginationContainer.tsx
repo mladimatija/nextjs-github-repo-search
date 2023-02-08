@@ -12,38 +12,47 @@ const PaginationContainer: FC<PaginationContainerProps> = ({
 	onPageChange,
 	isFetching,
 	currentItemsLength,
-}) => (
-	<>
-		<Container py={{ base: "4", md: "8" }}>
-			<HStack>
-				<Divider />
-			</HStack>
-		</Container>
-		<Container>
-			<Box textAlign="center">
-				{!isFetching && resultsTotal !== 0 ? (
-					<span>
-						Showing <strong>{currentPage * itemsPerPage + 1}</strong> -{" "}
-						<strong>{currentPage * itemsPerPage + (currentItemsLength || 0)}</strong> of <strong>{resultsTotal}</strong>{" "}
-						results.
-					</span>
-				) : isFetching ? (
-					<Spinner color="blue.500" />
-				) : null}
-			</Box>
+}) => {
+	const ShowingResultsText = () => {
+		const from = currentPage === 1 ? 1 : currentPage * itemsPerPage + 1;
+		const to = currentPage === 1 && pagesCount === 1 ? resultsTotal : currentPage * itemsPerPage + itemsPerPage;
 
-			<Pagination
-				pagesCount={pagesCount}
-				currentPage={currentPage}
-				onPageChange={onPageChange}
-				pages={pages}
-				isFetching={isFetching}
-				resultsTotal={resultsTotal}
-				currentItemsLength={currentItemsLength || 0}
-			/>
-		</Container>
-	</>
-);
+		return (
+			<span>
+				Showing <strong>{from}</strong> - <strong>{to}</strong> of <strong>{resultsTotal}</strong> results.
+			</span>
+		);
+	};
+
+	return (
+		<>
+			<Container py={{ base: "4", md: "8" }}>
+				<HStack>
+					<Divider />
+				</HStack>
+			</Container>
+			<Container>
+				<Box textAlign="center">
+					{!isFetching && resultsTotal !== 0 ? (
+						<ShowingResultsText />
+					) : isFetching ? (
+						<Spinner color="blue.500" />
+					) : null}
+				</Box>
+
+				<Pagination
+					pagesCount={pagesCount}
+					currentPage={currentPage}
+					onPageChange={onPageChange}
+					pages={pages}
+					isFetching={isFetching}
+					resultsTotal={resultsTotal}
+					currentItemsLength={currentItemsLength}
+				/>
+			</Container>
+		</>
+	);
+};
 
 export default PaginationContainer;
 

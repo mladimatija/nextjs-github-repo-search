@@ -6,7 +6,7 @@ import SkeletonLoader from "./SkeletonLoader";
 
 import { usePagination } from "@ajna/pagination";
 import NoResultsText from "./NoResultsText";
-import type {Repository} from "./ItemsContainer";
+import type { Repository } from "./ItemsContainer";
 import ItemsContainer from "./ItemsContainer";
 import SearchBar from "./SearchBar";
 import PaginationContainer from "./PaginationContainer";
@@ -15,7 +15,7 @@ const MainContent = () => {
 	const itemsPerPage = 12;
 	const [searchValue, setSearchValue] = useState("");
 	const [data, setData] = useState<Repository[]>([]);
-	const [resultsTotal, setResultsTotal] = useState<number | undefined>(undefined);
+	const [resultsTotal, setResultsTotal] = useState<number>(0);
 	// let's keep Octokit in useMemo since we don't want it to reinit on every component re-render
 	const octokit = useMemo(
 		() =>
@@ -55,13 +55,13 @@ const MainContent = () => {
 				setData(items ?? []);
 
 				if (items?.length) {
-					setResultsTotal(result?.data.total_count);
+					setResultsTotal(result?.data?.total_count || 0);
 				}
-			}
+			},
 		},
 		// TODO api error handling
 		() => ({ data: { items: [] } }),
-		250
+		1000
 	);
 
 	const handlePageChange = (nextPage: number): void => setCurrentPage(nextPage);
@@ -102,7 +102,7 @@ const MainContent = () => {
 					) : null}
 				</Container>
 
-				{!!searchValue.length && (
+				{!!searchValue.length && !searchQuery.isFetching && (
 					<PaginationContainer
 						pagesCount={pagesCount}
 						currentPage={currentPage}

@@ -22,13 +22,13 @@ const Pagination: FC<PaginationExtendedProps> = ({
 	onPageChange,
 	isFetching,
 	resultsTotal,
-	currentItemsLength
+	currentItemsLength,
 }) => {
 	return (
 		<PaginationCmp pagesCount={pagesCount} currentPage={currentPage} onPageChange={onPageChange}>
 			<PaginationContainer align="center" justify="space-between" py={4} w="full" gap={4}>
 				<PaginationPrevious
-					isDisabled={currentItemsLength === 0}
+					isDisabled={currentItemsLength === 0 || isFetching}
 					minW={100}
 					_hover={{
 						bg: "blue.600",
@@ -66,7 +66,7 @@ const Pagination: FC<PaginationExtendedProps> = ({
 				{isFetching && <Spinner color="blue.500" />}
 
 				<PaginationNext
-					isDisabled={currentItemsLength === 0}
+					isDisabled={currentItemsLength === 0 || isFetching}
 					minW={100}
 					_hover={{
 						bg: "blue.600",
@@ -85,6 +85,6 @@ export default Pagination;
 export interface PaginationExtendedProps extends PaginationProps {
 	pages: number[];
 	isFetching: boolean;
-	resultsTotal: number | undefined;
-	currentItemsLength: number | undefined;
+	resultsTotal: number;
+	currentItemsLength: number;
 }
