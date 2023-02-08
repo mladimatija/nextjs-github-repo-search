@@ -29,6 +29,7 @@ const Pagination: FC<PaginationExtendedProps> = ({
 			<PaginationContainer align="center" justify="space-between" py={4} w="full" gap={4}>
 				<PaginationPrevious
 					isDisabled={currentItemsLength === 0}
+					minW={100}
 					_hover={{
 						bg: "blue.600",
 					}}
@@ -66,6 +67,7 @@ const Pagination: FC<PaginationExtendedProps> = ({
 
 				<PaginationNext
 					isDisabled={currentItemsLength === 0}
+					minW={100}
 					_hover={{
 						bg: "blue.600",
 					}}
