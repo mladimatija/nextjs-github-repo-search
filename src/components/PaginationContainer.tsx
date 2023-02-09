@@ -5,17 +5,16 @@ import type { FC } from "react";
 
 const PaginationContainer: FC<PaginationContainerProps> = ({
 	pages,
-	pagesCount,
 	currentPage,
 	itemsPerPage,
+	itemsCount,
 	resultsTotal,
-	onPageChange,
 	isFetching,
-	currentItemsLength,
+	onPageChange,
 }) => {
 	const ShowingResultsText = () => {
 		const from = currentPage === 1 ? 1 : currentPage * itemsPerPage + 1;
-		const to = currentPage === 1 && pagesCount === 1 ? resultsTotal : currentPage * itemsPerPage + itemsPerPage;
+		const to = currentPage === 1 && pages.length === 1 ? resultsTotal : currentPage * itemsPerPage + itemsPerPage;
 
 		return (
 			<span>
@@ -41,13 +40,13 @@ const PaginationContainer: FC<PaginationContainerProps> = ({
 				</Box>
 
 				<Pagination
-					pagesCount={pagesCount}
+					pagesCount={pages.length}
 					currentPage={currentPage}
 					onPageChange={onPageChange}
 					pages={pages}
 					isFetching={isFetching}
 					resultsTotal={resultsTotal}
-					currentItemsLength={currentItemsLength}
+					itemsCount={itemsCount}
 				/>
 			</Container>
 		</>
@@ -56,6 +55,6 @@ const PaginationContainer: FC<PaginationContainerProps> = ({
 
 export default PaginationContainer;
 
-interface PaginationContainerProps extends PaginationExtendedProps {
+interface PaginationContainerProps extends Omit<PaginationExtendedProps, 'pagesCount'> {
 	itemsPerPage: number;
 }

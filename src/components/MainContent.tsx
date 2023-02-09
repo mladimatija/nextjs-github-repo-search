@@ -25,7 +25,7 @@ const MainContent = () => {
 		[]
 	);
 
-	const { pages, pagesCount, currentPage, setCurrentPage } = usePagination({
+	const { pages, currentPage, setCurrentPage } = usePagination({
 		total: resultsTotal,
 		limits: {
 			outer: 1,
@@ -79,14 +79,13 @@ const MainContent = () => {
 
 				{!!searchValue.length && (
 					<PaginationContainer
-						pagesCount={pagesCount}
-						currentPage={currentPage}
-						onPageChange={handlePageChange}
 						pages={pages}
-						isFetching={searchQuery.isFetching}
+						currentPage={currentPage}
 						itemsPerPage={itemsPerPage}
+						itemsCount={data?.length}
 						resultsTotal={resultsTotal}
-						currentItemsLength={data?.length}
+						isFetching={searchQuery.isFetching}
+						onPageChange={handlePageChange}
 					/>
 				)}
 
@@ -104,14 +103,13 @@ const MainContent = () => {
 
 				{!!searchValue.length && !searchQuery.isFetching && (
 					<PaginationContainer
-						pagesCount={pagesCount}
-						currentPage={currentPage}
-						onPageChange={handlePageChange}
 						pages={pages}
-						isFetching={searchQuery.isFetching}
+						currentPage={currentPage}
 						itemsPerPage={itemsPerPage}
+						itemsCount={data?.length}
 						resultsTotal={resultsTotal}
-						currentItemsLength={data?.length}
+						isFetching={searchQuery.isFetching}
+						onPageChange={handlePageChange}
 					/>
 				)}
 			</Container>

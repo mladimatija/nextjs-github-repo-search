@@ -13,22 +13,21 @@ import { Spinner, Text } from "@chakra-ui/react";
 import type { FC } from "react";
 
 // TODO responsive styles
-// TODO disable pagination butons on no results
 
 const Pagination: FC<PaginationExtendedProps> = ({
 	pages,
 	pagesCount,
 	currentPage,
+	itemsCount,
+	resultsTotal,
 	onPageChange,
 	isFetching,
-	resultsTotal,
-	currentItemsLength,
 }) => {
 	return (
 		<PaginationCmp pagesCount={pagesCount} currentPage={currentPage} onPageChange={onPageChange}>
 			<PaginationContainer align="center" justify="space-between" py={4} w="full" gap={4}>
 				<PaginationPrevious
-					isDisabled={currentItemsLength === 0 || isFetching}
+					isDisabled={itemsCount === 0 || isFetching}
 					minW={100}
 					_hover={{
 						bg: "blue.600",
@@ -66,7 +65,7 @@ const Pagination: FC<PaginationExtendedProps> = ({
 				{isFetching && <Spinner color="blue.500" />}
 
 				<PaginationNext
-					isDisabled={currentItemsLength === 0 || isFetching}
+					isDisabled={itemsCount === 0 || isFetching}
 					minW={100}
 					_hover={{
 						bg: "blue.600",
@@ -86,5 +85,5 @@ export interface PaginationExtendedProps extends PaginationProps {
 	pages: number[];
 	isFetching: boolean;
 	resultsTotal: number;
-	currentItemsLength: number;
+	itemsCount: number;
 }
