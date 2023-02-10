@@ -14,8 +14,14 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
-		"noUncheckedIndexedAccess": true
+		"noUncheckedIndexedAccess": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/components/*": ["components/*"],
+			"@/pages/*": ["pages/*"],
+			"@/styles/*": ["styles/*"]
+		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs", "jest.config.js", "jest.config.js"],
 	"exclude": ["node_modules"]
 }
