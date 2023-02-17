@@ -53,10 +53,7 @@ const MainContent = () => {
 			onSuccess: (result) => {
 				const items = result?.data.items;
 				setData(items ?? []);
-
-				if (items?.length) {
-					setResultsTotal(result?.data?.total_count || 0);
-				}
+				setResultsTotal((items?.length && result?.data?.total_count) || 0);
 			},
 		},
 		// TODO api error handling
@@ -77,7 +74,7 @@ const MainContent = () => {
 					<SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
 				</Stack>
 
-				{!!searchValue.length && (
+				{!!searchValue.length && !!resultsTotal && (
 					<PaginationContainer
 						pages={pages}
 						currentPage={currentPage}
@@ -101,7 +98,7 @@ const MainContent = () => {
 					) : null}
 				</Container>
 
-				{!!searchValue.length && !searchQuery.isFetching && (
+				{!!searchValue.length && !searchQuery.isFetching && !!resultsTotal && (
 					<PaginationContainer
 						pages={pages}
 						currentPage={currentPage}
