@@ -21,7 +21,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        ref: ${{ env:NEXT_PUBLIC_GITHUB_TOKEN }}
+        ref: ${{ env.NEXT_PUBLIC_GITHUB_TOKEN }}
 
     - name: Install dependencies
       run: npm install
