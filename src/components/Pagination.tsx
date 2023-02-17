@@ -28,6 +28,7 @@ const Pagination: FC<PaginationExtendedProps> = ({
 			<PaginationContainer align="center" justify="space-between" py={4} w="full" gap={4}>
 				<PaginationPrevious
 					isDisabled={itemsCount === 0 || isFetching}
+					isLoading={isFetching}
 					minW={100}
 					_hover={{
 						bg: "blue.600",
@@ -65,6 +66,7 @@ const Pagination: FC<PaginationExtendedProps> = ({
 				{isFetching && <Spinner color="blue.500" />}
 
 				<PaginationNext
+					isLoading={isFetching}
 					isDisabled={itemsCount === 0 || isFetching}
 					minW={100}
 					_hover={{

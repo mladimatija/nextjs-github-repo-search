@@ -30,14 +30,13 @@ const PaginationContainer: FC<PaginationContainerProps> = ({
 					<Divider />
 				</HStack>
 			</Container>
+
 			<Container>
-				<Box textAlign="center">
-					{!isFetching && resultsTotal !== 0 ? (
+				{!isFetching && resultsTotal !== 0 ? (
+					<Box textAlign="center">
 						<ShowingResultsText />
-					) : isFetching ? (
-						<Spinner color="blue.500" />
-					) : null}
-				</Box>
+					</Box>
+				) : null}
 
 				<Pagination
 					pagesCount={pages.length}
@@ -55,6 +54,6 @@ const PaginationContainer: FC<PaginationContainerProps> = ({
 
 export default PaginationContainer;
 
-interface PaginationContainerProps extends Omit<PaginationExtendedProps, 'pagesCount'> {
+interface PaginationContainerProps extends Omit<PaginationExtendedProps, "pagesCount"> {
 	itemsPerPage: number;
 }
