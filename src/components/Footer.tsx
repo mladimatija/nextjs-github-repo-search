@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
 
 const Footer = () => (
-	<Container as="footer" role="contentinfo" py={{ base: "4" }}>
+	<Container as="footer" role="contentinfo" py={{ base: "4" }} data-testid="footer">
 		<HStack py={{ base: "4" }}>
 			<Divider />
 		</HStack>

@@ -11,6 +11,7 @@ const Header = () => (
 		maxWidth="100%"
 		p={{ base: "4" }}
 		style={{ position: "sticky" }}
+		data-testid="header"
 	>
 		<Flex justify="space-between" align="center">
 			<Link href={"/"} title="Github Repo Search">

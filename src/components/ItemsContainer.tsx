@@ -17,7 +17,7 @@ const ItemsContainer = ({ items }: { items: Repository[] }) => {
 	);
 
 	return (
-		<SimpleGrid columns={columnsNumber} spacing={10}>
+		<SimpleGrid columns={columnsNumber} spacing={10} data-testid="items-container">
 			{items.map((item, i) => (
 				<Item data={item} key={`search-results-item-${i}`} />
 			))}

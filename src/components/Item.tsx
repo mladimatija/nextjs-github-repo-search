@@ -23,6 +23,7 @@ const Item = ({ data }: { data: Repository }) => {
 			}}
 			onMouseEnter={() => setIsHovering(true)}
 			onMouseLeave={() => setIsHovering(false)}
+			data-testid="item"
 		>
 			<Flex direction="column" justifyContent="space-between" basis="100%" wordBreak="break-word">
 				<Container px={0}>
