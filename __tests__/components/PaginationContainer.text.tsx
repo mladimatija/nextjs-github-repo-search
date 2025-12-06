@@ -14,6 +14,7 @@ describe("PaginationContainer", () => {
 				itemsPerPage={1}
 				onPageChange={() => null}
 				resultsTotal={0}
+				pagesCount={0}
 			/>
 		);
 		const elem = screen.getByTestId("pagination-container");
@@ -143,6 +144,7 @@ describe("PaginationContainer", () => {
 					isFetching={false}
 					itemsCount={25}
 					onPageChange={() => null}
+					pagesCount={0}
 				/>
 			);
 			const elem = screen.getByTestId("pagination-results-text");
