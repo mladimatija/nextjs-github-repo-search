@@ -1,4 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+ 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const nextJest = require('next/jest');
 
 const createJestConfig = nextJest({
@@ -44,7 +45,10 @@ const customJestConfig = {
 		// https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object
 		"^.+\\.(js|jsx|ts|tsx)$": ["babel-jest", { presets: ["next/babel"] }],
 	},
-	transformIgnorePatterns: ["/node_modules/", "^.+\\.module\\.(css|sass|scss)$"],
+	transformIgnorePatterns: [
+		"/node_modules/(?!(octokit|@octokit|use-debounce)/)",
+		"^.+\\.module\\.(css|sass|scss)$"
+	],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

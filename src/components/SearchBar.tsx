@@ -1,4 +1,4 @@
-import { Icon, Input, InputGroup, InputLeftElement, InputRightElement } from "@chakra-ui/react";
+import { Icon, Input, Group } from "@chakra-ui/react";
 import { FiDelete, FiSearch } from "react-icons/fi";
 
 const SearchBar = ({
@@ -8,21 +8,39 @@ const SearchBar = ({
 	searchValue: string;
 	setSearchValue: (value: string) => void;
 }) => (
-	<InputGroup maxW={{ base: "lg", md: "md", lg: "lg" }}>
-		<InputLeftElement pointerEvents="none">
-			<Icon as={FiSearch} color="muted" boxSize="7" />
-		</InputLeftElement>
+	<Group maxW={{ base: "lg", md: "md", lg: "lg" }} width="100%">
 		<Input
 			placeholder="Search by name, description, tags..."
 			onChange={(e) => setSearchValue(e.target.value)}
 			value={searchValue}
+			ps="10"
+			pe={searchValue ? "10" : "4"}
+		/>
+		<Icon
+			as={FiSearch}
+			color="fg.muted"
+			position="absolute"
+			left="3"
+			top="50%"
+			transform="translateY(-50%)"
+			pointerEvents="none"
+			zIndex={1}
 		/>
 		{searchValue && (
-			<InputRightElement cursor="pointer" title="Clear search" onClick={() => setSearchValue("")}>
-				<Icon as={FiDelete} color="muted" boxSize="7" _hover={{ color: "blue.500" }} />
-			</InputRightElement>
+			<Icon
+				as={FiDelete}
+				color="fg.muted"
+				position="absolute"
+				right="3"
+				top="50%"
+				transform="translateY(-50%)"
+				cursor="pointer"
+				onClick={() => setSearchValue("")}
+				_hover={{ color: "blue.500" }}
+				zIndex={1}
+			/>
 		)}
-	</InputGroup>
+	</Group>
 );
 
 export default SearchBar;

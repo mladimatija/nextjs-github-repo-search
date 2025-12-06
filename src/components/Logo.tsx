@@ -11,7 +11,6 @@ const Logo = ({ showSlogan = true, ...props }: LogoProps) => (
 		width="auto"
 		maxWidth="180px"
 		xmlns="http://www.w3.org/2000/svg"
-		title="Github Repo Search"
 		{...props}
 	>
 		<chakra.svg

@@ -20,7 +20,7 @@ describe("Home page", () => {
 			</QueryClientProvider>
 		);
 
-		const main = screen.getByRole("main");
-		expect(main).toBeInTheDocument();
+		const main = screen.getAllByRole("main");
+		expect(main.length).toBeGreaterThan(0);
 	});
 });

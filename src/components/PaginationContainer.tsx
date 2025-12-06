@@ -1,10 +1,11 @@
 import type { PaginationExtendedProps } from "./Pagination";
 import Pagination from "./Pagination";
-import { Box, Container, Divider, HStack } from "@chakra-ui/react";
+import { Box, Container, Separator, HStack } from "@chakra-ui/react";
 import type { FC } from "react";
 
 const PaginationContainer: FC<PaginationContainerProps> = ({
 	pages,
+	pagesCount,
 	currentPage,
 	itemsPerPage,
 	itemsCount,
@@ -16,7 +17,7 @@ const PaginationContainer: FC<PaginationContainerProps> = ({
 		<div data-testid="pagination-container">
 			<Container py={{ base: "4", md: "8" }}>
 				<HStack>
-					<Divider />
+					<Separator />
 				</HStack>
 			</Container>
 
@@ -27,13 +28,14 @@ const PaginationContainer: FC<PaginationContainerProps> = ({
 							currentPage={currentPage}
 							itemsPerPage={itemsPerPage}
 							pages={pages}
+							pagesCount={pagesCount}
 							resultsTotal={resultsTotal}
 						/>
 					</Box>
 				) : null}
 
 				<Pagination
-					pagesCount={pages.length}
+					pagesCount={pagesCount}
 					currentPage={currentPage}
 					onPageChange={onPageChange}
 					pages={pages}
@@ -48,27 +50,23 @@ const PaginationContainer: FC<PaginationContainerProps> = ({
 
 export default PaginationContainer;
 
-interface PaginationContainerProps extends Omit<PaginationExtendedProps, "pagesCount"> {
+interface PaginationContainerProps extends PaginationExtendedProps {
 	itemsPerPage: number;
 }
 
 export const PaginationResultsText: FC<PaginationResultsTextProps> = ({
 	currentPage,
 	itemsPerPage,
-	pages,
+	pagesCount,
 	resultsTotal,
 }) => {
-	const from = currentPage === 1 ? 1 : currentPage * itemsPerPage + 1;
+	const from = currentPage === 1 ? 1 : (currentPage - 1) * itemsPerPage + 1;
 
 	let to;
-	if (currentPage === pages.length) {
+	if (currentPage === pagesCount) {
 		to = resultsTotal;
 	} else {
-		if (currentPage === 1) {
-			to = pages.length === 1 ? resultsTotal : itemsPerPage;
-		} else {
-			to = currentPage * itemsPerPage + itemsPerPage;
-		}
+		to = currentPage * itemsPerPage;
 	}
 
 	return (

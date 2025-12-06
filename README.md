@@ -1,9 +1,10 @@
 # NextJS Github Repo Search
 
-A simple app that searches Github for repositories based on any keyword. Built using NextJS while exploring new technologies - Chakra UI, Zod and tRPC.
-For simplicity sake all potentially configurable values are kept inside the app - only `NEXT_PUBLIC_GITHUB_TOKEN` was extracted as a env variable (see [Installation](#Installation)).
+A simple app that searches GitHub for repositories based on any keyword. Built using Next.js 16, React 19, Chakra UI v3, and TanStack Query.
+For simplicity’s sake all potentially configurable values are kept inside the app - only `NEXT_PUBLIC_GITHUB_TOKEN` was extracted as an env variable (see [Installation](#Installation)).
 
-Challenge here was trying to recreate api request throttling functionality while using tRPC (tanstack-query underneath), which does not support any kind of debouncing/throttling natively ([nor it will](https://github.com/TanStack/query/issues/3331)).
+The challenge here was implementing API request debouncing functionality with TanStack Query, which does not support debouncing/throttling natively ([nor it will](https://github.com/TanStack/query/issues/3331)).
+Solved by debouncing the search input value using the `use-debounce` library.
 
 [LogoAI](https://www.logoai.com/) was used to generate app logo.
 
@@ -11,16 +12,17 @@ Challenge here was trying to recreate api request throttling functionality while
 
 [Working Demo](https://nextjs-github-repo-search.vercel.app/)
 
-## Requirements
+## Tech Stack
 
-- [Next.js](https://nextjs.org)
-- [Chakra UI](https://chakra-ui.com/)
-- [Zod](https://zod.dev/)
-- [tRPC](https://trpc.io)
+- [Next.js 16](https://nextjs.org)
+- [React 19](https://react.dev)
+- [Chakra UI v3](https://chakra-ui.com/)
+- [TanStack Query v5](https://tanstack.com/query)
+- [Octokit](https://github.com/octokit/octokit.js)
 
 ## Installation
 
-Add following variables to your `.env` and then hit `npm install` & `npm run dev`:
+Add the following variables to your `.env` and then hit `npm install` & `npm run dev`:
 - NEXT_PUBLIC_GITHUB_TOKEN
 
 ## Deployment

@@ -1,7 +1,7 @@
-import { screen } from "@testing-library/react";
+import {screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import PaginationContainer from "../../src/components/PaginationContainer";
-import { renderWithTheme } from "../../test-utils";
+import {renderWithTheme} from "../../test-utils";
 
 describe("PaginationContainer", () => {
 	it("should render", () => {
@@ -26,6 +26,7 @@ describe("PaginationContainer", () => {
 			const currentPage = 2;
 			const itemsPerPage = 10;
 			const pages = [1, 2, 3];
+			const pagesCount = 3;
 
 			renderWithTheme(
 				<PaginationContainer
@@ -33,6 +34,7 @@ describe("PaginationContainer", () => {
 					currentPage={currentPage}
 					itemsPerPage={itemsPerPage}
 					pages={pages}
+					pagesCount={pagesCount}
 					isFetching={false}
 					itemsCount={resultsTotal}
 					onPageChange={() => null}
@@ -40,8 +42,8 @@ describe("PaginationContainer", () => {
 			);
 			const elem = screen.getByTestId("pagination-results-text");
 
-			const from = currentPage * itemsPerPage + 1;
-			const to = currentPage * itemsPerPage + itemsPerPage;
+			const from = (currentPage - 1) * itemsPerPage + 1;
+			const to = currentPage * itemsPerPage;
 			const expectedText = `Showing ${from} - ${to} of ${resultsTotal} results.`;
 
 			expect(elem.textContent).toBe(expectedText);
@@ -52,6 +54,7 @@ describe("PaginationContainer", () => {
 			const currentPage = 1;
 			const itemsPerPage = 10;
 			const pages = [1, 2, 3];
+			const pagesCount = 3;
 
 			renderWithTheme(
 				<PaginationContainer
@@ -59,6 +62,7 @@ describe("PaginationContainer", () => {
 					currentPage={currentPage}
 					itemsPerPage={itemsPerPage}
 					pages={pages}
+					pagesCount={pagesCount}
 					isFetching={false}
 					itemsCount={resultsTotal}
 					onPageChange={() => null}
@@ -77,6 +81,7 @@ describe("PaginationContainer", () => {
 			const currentPage = 1;
 			const itemsPerPage = 10;
 			const pages = [1];
+			const pagesCount = 1;
 
 			renderWithTheme(
 				<PaginationContainer
@@ -84,6 +89,7 @@ describe("PaginationContainer", () => {
 					currentPage={currentPage}
 					itemsPerPage={itemsPerPage}
 					pages={pages}
+					pagesCount={pagesCount}
 					isFetching={false}
 					itemsCount={resultsTotal}
 					onPageChange={() => null}
@@ -100,7 +106,7 @@ describe("PaginationContainer", () => {
 		it("when resultsTotal is less than itemsPerPage", () => {
 			const resultsTotal = 5;
 			const currentPage = 1;
-			const itemsPerPage = 10;
+			const itemsPerPage = 5;
 			const pages = [1];
 
 			renderWithTheme(
@@ -112,7 +118,7 @@ describe("PaginationContainer", () => {
 					isFetching={false}
 					itemsCount={resultsTotal}
 					onPageChange={() => null}
-				/>
+					pagesCount={0}/>
 			);
 
 			const from = 1;

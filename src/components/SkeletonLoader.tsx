@@ -8,25 +8,25 @@ const SkeletonLoader = () => {
 			lg: 3,
 		},
 		{
-			fallback: "md",
+			fallback: "lg",
 		}
 	);
 	const breakpoint = useBreakpoint({ ssr: false });
 
 	return (
-		<SimpleGrid columns={columnsNumber} spacing={10} data-testid="skeleton-loader">
+		<SimpleGrid columns={columnsNumber} gap={10} data-testid="skeleton-loader" width="100%">
 			<Box padding="6" boxShadow="lg" bg="white">
 				<SkeletonCircle size="10" />
-				<SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
+				<SkeletonText mt="4" noOfLines={4} gap="4" />
 			</Box>
 			<Box padding="6" boxShadow="lg" bg="white">
 				<SkeletonCircle size="10" />
-				<SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
+				<SkeletonText mt="4" noOfLines={4} gap="4" />
 			</Box>
 			{breakpoint !== "md" && (
 				<Box padding="6" boxShadow="lg" bg="white">
 					<SkeletonCircle size="10" />
-					<SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
+					<SkeletonText mt="4" noOfLines={4} gap="4" />
 				</Box>
 			)}
 		</SimpleGrid>

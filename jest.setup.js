@@ -7,6 +7,14 @@ import "regenerator-runtime";
 
 /** Add any global mocks needed for the test suite here */
 
+// Polyfill for structuredClone (required for Chakra UI v3)
+if (typeof global.structuredClone === 'undefined') {
+	global.structuredClone = (val) => {
+		if (val === undefined) return undefined;
+		return JSON.parse(JSON.stringify(val));
+	};
+}
+
 Object.defineProperty(window, "matchMedia", {
 	writable: true,
 	value: jest.fn().mockImplementation((query) => ({
