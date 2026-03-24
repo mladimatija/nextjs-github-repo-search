@@ -1,29 +1,21 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 
 interface PaginationConfig {
 	total: number;
+	currentPage: number;
+	pageSize: number;
 	limits: {
 		outer: number;
 		inner: number;
-	};
-	initialState: {
-		pageSize: number;
-		currentPage: number;
 	};
 }
 
 interface UsePaginationReturn {
 	pages: number[];
 	pagesCount: number;
-	currentPage: number;
-	setCurrentPage: (page: number) => void;
-	isDisabled: boolean;
 }
 
-export const usePagination = ({ total, limits, initialState }: PaginationConfig): UsePaginationReturn => {
-	const [currentPage, setCurrentPage] = useState(initialState.currentPage);
-	const { pageSize } = initialState;
-
+export const usePagination = ({ total, currentPage, pageSize, limits }: PaginationConfig): UsePaginationReturn => {
 	const pagesCount = useMemo(() => {
 		return total > 0 ? Math.ceil(total / pageSize) : 0;
 	}, [total, pageSize]);
@@ -68,11 +60,5 @@ export const usePagination = ({ total, limits, initialState }: PaginationConfig)
 		return [];
 	}, [currentPage, pagesCount, limits]);
 
-	return {
-		pages,
-		pagesCount,
-		currentPage,
-		setCurrentPage,
-		isDisabled: pagesCount === 0,
-	};
+	return { pages, pagesCount };
 };

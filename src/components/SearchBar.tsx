@@ -1,5 +1,5 @@
 import { Icon, Input, Group } from '@chakra-ui/react';
-import { FiDelete, FiSearch } from 'react-icons/fi';
+import { FiSearch, FiX } from 'react-icons/fi';
 
 const SearchBar = ({
 	searchValue,
@@ -28,7 +28,7 @@ const SearchBar = ({
 		/>
 		{searchValue && (
 			<Icon
-				as={FiDelete}
+				as={FiX}
 				color="fg.muted"
 				position="absolute"
 				right="3"
@@ -38,6 +38,7 @@ const SearchBar = ({
 				onClick={() => setSearchValue('')}
 				_hover={{ color: 'blue.500' }}
 				zIndex={1}
+				aria-label="Clear search"
 			/>
 		)}
 	</Group>

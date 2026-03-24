@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Item from '../../src/components/Item';
 import { renderWithTheme } from '../../test-utils';
@@ -33,12 +33,8 @@ describe('Item', () => {
 		expect(elem).toBeInTheDocument();
 	});
 
-	it('updates state on mouse enter and leave', () => {
-		expect(elem.style.top).toBe('0px');
-		fireEvent.mouseEnter(elem);
-		expect(elem.style.top).toBe('-10px');
-		fireEvent.mouseLeave(elem);
-		expect(elem.style.top).toBe('0px');
+	it('has a CSS transition for the hover lift effect', () => {
+		expect(elem).toHaveStyle({ transition: 'transform 0.3s ease' });
 	});
 
 	it('displays the repository name', () => {
@@ -80,5 +76,18 @@ describe('Item', () => {
 		// @ts-ignore
 		const licenseElement = screen.getByText(mockData.license.name);
 		expect(licenseElement).toBeInTheDocument();
+	});
+
+	it('does not render a license stat when license is absent', () => {
+		const { container } = renderWithTheme(<Item data={{ ...mockData, license: null } as Repository} />);
+		// Use within(container) to scope to this render only — beforeEach also renders an item with 'MIT'
+		expect(within(container).queryByText('MIT')).not.toBeInTheDocument();
+	});
+
+	it('renders a license stat with an empty href when license has no url', () => {
+		const { container } = renderWithTheme(
+			<Item data={{ ...mockData, license: { name: 'Apache-2.0', url: null } } as Repository} />,
+		);
+		expect(within(container).getByText('Apache-2.0')).toBeInTheDocument();
 	});
 });

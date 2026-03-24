@@ -8,6 +8,15 @@ Solved by debouncing the search input value using the `use-debounce` library.
 
 [LogoAI](https://www.logoai.com/) was used to generate app logo.
 
+## Features
+
+- Keyword search with debounced input
+- Filter by programming language
+- Sort results by best match, stars, forks, recently updated, or help-wanted issues
+- Paginated results (GitHub API cap: 1,000 results)
+- URL state sync — search, page, sort, and language are preserved in the query string
+- Light/dark mode toggle with `localStorage` persistence
+
 ## Demo
 
 [Working Demo](https://nextjs-github-repo-search.vercel.app/)

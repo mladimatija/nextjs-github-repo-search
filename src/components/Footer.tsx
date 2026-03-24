@@ -27,7 +27,7 @@ const Footer = () => (
 					</Link>
 				</ButtonGroup>
 			</Stack>
-			<Text fontSize="sm" color="subtle" marginTop={0} textAlign={{ base: 'center', md: 'left' }}>
+			<Text fontSize="sm" color="fg.subtle" marginTop={0} textAlign={{ base: 'center', md: 'left' }}>
 				&copy; {new Date().getFullYear()} Github Repo Search
 			</Text>
 		</Stack>

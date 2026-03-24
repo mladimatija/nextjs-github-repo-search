@@ -1,5 +1,16 @@
 // Global test setup — polyfills and mocks applied before every test suite.
 
+jest.mock('next/router', () => ({
+	useRouter: jest.fn().mockReturnValue({
+		isReady: true,
+		query: {},
+		pathname: '/',
+		push: jest.fn(),
+		replace: jest.fn(),
+		events: { on: jest.fn(), off: jest.fn() },
+	}),
+}));
+
 // Polyfill for structuredClone (required for Chakra UI v3)
 if (typeof global.structuredClone === 'undefined') {
 	global.structuredClone = (val) => {
