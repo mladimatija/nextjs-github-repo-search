@@ -1,7 +1,7 @@
-import type { PaginationExtendedProps } from "./Pagination";
-import Pagination from "./Pagination";
-import { Box, Container, Separator, HStack } from "@chakra-ui/react";
-import type { FC } from "react";
+import type { PaginationExtendedProps } from './Pagination';
+import Pagination from './Pagination';
+import { Box, Container, Separator, HStack } from '@chakra-ui/react';
+import type { FC } from 'react';
 
 const PaginationContainer: FC<PaginationContainerProps> = ({
 	pages,
@@ -15,7 +15,7 @@ const PaginationContainer: FC<PaginationContainerProps> = ({
 }) => {
 	return (
 		<div data-testid="pagination-container">
-			<Container py={{ base: "4", md: "8" }}>
+			<Container py={{ base: '4', md: '8' }}>
 				<HStack>
 					<Separator />
 				</HStack>
@@ -76,4 +76,4 @@ export const PaginationResultsText: FC<PaginationResultsTextProps> = ({
 	);
 };
 
-type PaginationResultsTextProps = Omit<PaginationContainerProps, "isFetching" | "onPageChange" | "itemsCount">;
+type PaginationResultsTextProps = Omit<PaginationContainerProps, 'isFetching' | 'onPageChange' | 'itemsCount'>;

@@ -1,11 +1,11 @@
-import { screen } from "@testing-library/react";
-import Home from "../../src/pages/index";
-import "@testing-library/jest-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { renderWithTheme } from "../../test-utils";
+import { screen } from '@testing-library/react';
+import Home from '../../src/pages/index';
+import '@testing-library/jest-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { renderWithTheme } from '../../test-utils';
 
-describe("Home page", () => {
-	it("should render", () => {
+describe('Home page', () => {
+	it('should render', () => {
 		const queryClient = new QueryClient({
 			defaultOptions: {
 				queries: {
@@ -20,7 +20,7 @@ describe("Home page", () => {
 			</QueryClientProvider>,
 		);
 
-		const main = screen.getAllByRole("main");
+		const main = screen.getAllByRole('main');
 		expect(main.length).toBeGreaterThan(0);
 	});
 });

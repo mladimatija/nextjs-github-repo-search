@@ -1,5 +1,5 @@
-import { Box, Button, Flex, Spinner, Text } from "@chakra-ui/react";
-import type { FC } from "react";
+import { Box, Button, Flex, Spinner, Text } from '@chakra-ui/react';
+import type { FC } from 'react';
 
 interface PaginationProps {
 	pagesCount: number;
@@ -47,11 +47,11 @@ const Pagination: FC<PaginationExtendedProps> = ({
 				bg="blue.500"
 				color="white"
 				_hover={{
-					bg: "blue.600",
+					bg: 'blue.600',
 				}}
 				_disabled={{
 					opacity: 0.5,
-					cursor: "not-allowed",
+					cursor: 'not-allowed',
 				}}
 			>
 				<Text>Previous</Text>
@@ -74,12 +74,12 @@ const Pagination: FC<PaginationExtendedProps> = ({
 								onClick={() => onPageChange(page)}
 								minW="40px"
 								size="sm"
-								variant={currentPage === page ? "solid" : "outline"}
-								bg={currentPage === page ? "blue.500" : "transparent"}
-								color={currentPage === page ? "white" : "blue.500"}
+								variant={currentPage === page ? 'solid' : 'outline'}
+								bg={currentPage === page ? 'blue.500' : 'transparent'}
+								color={currentPage === page ? 'white' : 'blue.500'}
 								borderColor="blue.500"
 								_hover={{
-									bg: currentPage === page ? "blue.600" : "blue.50",
+									bg: currentPage === page ? 'blue.600' : 'blue.50',
 								}}
 							>
 								{page}
@@ -98,11 +98,11 @@ const Pagination: FC<PaginationExtendedProps> = ({
 				bg="blue.500"
 				color="white"
 				_hover={{
-					bg: "blue.600",
+					bg: 'blue.600',
 				}}
 				_disabled={{
 					opacity: 0.5,
-					cursor: "not-allowed",
+					cursor: 'not-allowed',
 				}}
 			>
 				<Text>Next</Text>

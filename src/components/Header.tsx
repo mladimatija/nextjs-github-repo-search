@@ -1,7 +1,7 @@
-import { Container, Flex } from "@chakra-ui/react";
-import Link from "next/link";
-import Logo from "./Logo";
-import Image from "next/image";
+import { Container, Flex } from '@chakra-ui/react';
+import Link from 'next/link';
+import Logo from './Logo';
+import Image from 'next/image';
 
 const Header = () => (
 	<Container
@@ -9,12 +9,12 @@ const Header = () => (
 		bg="bg-surface"
 		boxShadow="sm"
 		maxWidth="100%"
-		p={{ base: "4" }}
-		style={{ position: "sticky" }}
+		p={{ base: '4' }}
+		style={{ position: 'sticky' }}
 		data-testid="header"
 	>
 		<Flex justify="space-between" align="center">
-			<Link href={"/"} title="Github Repo Search">
+			<Link href={'/'} title="Github Repo Search">
 				<Logo />
 			</Link>
 

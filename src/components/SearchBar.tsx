@@ -1,5 +1,5 @@
-import { Icon, Input, Group } from "@chakra-ui/react";
-import { FiDelete, FiSearch } from "react-icons/fi";
+import { Icon, Input, Group } from '@chakra-ui/react';
+import { FiDelete, FiSearch } from 'react-icons/fi';
 
 const SearchBar = ({
 	searchValue,
@@ -8,13 +8,13 @@ const SearchBar = ({
 	searchValue: string;
 	setSearchValue: (value: string) => void;
 }) => (
-	<Group maxW={{ base: "lg", md: "md", lg: "lg" }} width="100%">
+	<Group maxW={{ base: 'lg', md: 'md', lg: 'lg' }} width="100%">
 		<Input
 			placeholder="Search by name, description, tags..."
 			onChange={(e) => setSearchValue(e.target.value)}
 			value={searchValue}
 			ps="10"
-			pe={searchValue ? "10" : "4"}
+			pe={searchValue ? '10' : '4'}
 		/>
 		<Icon
 			as={FiSearch}
@@ -35,8 +35,8 @@ const SearchBar = ({
 				top="50%"
 				transform="translateY(-50%)"
 				cursor="pointer"
-				onClick={() => setSearchValue("")}
-				_hover={{ color: "blue.500" }}
+				onClick={() => setSearchValue('')}
+				_hover={{ color: 'blue.500' }}
 				zIndex={1}
 			/>
 		)}

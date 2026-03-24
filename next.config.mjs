@@ -4,21 +4,21 @@
  * This is especially useful for Docker builds.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-!process.env.SKIP_ENV_VALIDATION && (await import("./src/env/server.mjs"));
+!process.env.SKIP_ENV_VALIDATION && (await import('./src/env/server.mjs'));
 
 /** @type {import("next").NextConfig} */
 const config = {
 	reactStrictMode: true,
 	i18n: {
-		locales: ["en"],
-		defaultLocale: "en",
+		locales: ['en'],
+		defaultLocale: 'en',
 	},
 	images: {
 		remotePatterns: [
 			{
-				protocol: "https",
-				hostname: "img.shields.io",
-				port: "",
+				protocol: 'https',
+				hostname: 'img.shields.io',
+				port: '',
 			},
 		],
 	},

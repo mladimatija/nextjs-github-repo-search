@@ -1,0 +1,19 @@
+/** @type {import("prettier").Config} */
+module.exports = {
+	arrowParens: 'always',
+	bracketSpacing: true,
+	embeddedLanguageFormatting: 'auto',
+	htmlWhitespaceSensitivity: 'css',
+	insertPragma: false,
+	bracketSameLine: false,
+	jsxSingleQuote: false,
+	printWidth: 120,
+	proseWrap: 'preserve',
+	quoteProps: 'as-needed',
+	requirePragma: false,
+	semi: true,
+	singleQuote: true,
+	tabWidth: 2,
+	trailingComma: 'all',
+	useTabs: true,
+};

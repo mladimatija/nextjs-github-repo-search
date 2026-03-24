@@ -1,20 +1,20 @@
-import { Box, Container, Heading, Stack } from "@chakra-ui/react";
-import { useState, useMemo } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { useDebounce } from "use-debounce";
-import { Octokit } from "octokit";
-import SkeletonLoader from "./SkeletonLoader";
+import { Box, Container, Heading, Stack } from '@chakra-ui/react';
+import { useState, useMemo } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useDebounce } from 'use-debounce';
+import { Octokit } from 'octokit';
+import SkeletonLoader from './SkeletonLoader';
 
-import { usePagination } from "../hooks/usePagination";
-import NoResultsText from "./NoResultsText";
-import type { Repository } from "./ItemsContainer";
-import ItemsContainer from "./ItemsContainer";
-import SearchBar from "./SearchBar";
-import PaginationContainer from "./PaginationContainer";
+import { usePagination } from '../hooks/usePagination';
+import NoResultsText from './NoResultsText';
+import type { Repository } from './ItemsContainer';
+import ItemsContainer from './ItemsContainer';
+import SearchBar from './SearchBar';
+import PaginationContainer from './PaginationContainer';
 
 const MainContent = () => {
 	const itemsPerPage = 12;
-	const [searchValue, setSearchValue] = useState("");
+	const [searchValue, setSearchValue] = useState('');
 	const [debouncedSearchValue] = useDebounce(searchValue, 1000);
 	// Memoised so the Octokit instance (and its auth token) is created only once per mount
 	const octokit = useMemo(
@@ -29,10 +29,10 @@ const MainContent = () => {
 
 	// .data.data: the outer `data` is TanStack Query's wrapper; the inner `data` is GitHub's REST API response body
 	const searchQuery = useQuery({
-		queryKey: debouncedSearchValue.length ? ["searchRepos", debouncedSearchValue, itemsPerPage, currentPage] : [],
+		queryKey: debouncedSearchValue.length ? ['searchRepos', debouncedSearchValue, itemsPerPage, currentPage] : [],
 		queryFn: async () => {
 			if (debouncedSearchValue.length) {
-				return await octokit.request("GET /search/repositories", {
+				return await octokit.request('GET /search/repositories', {
 					q: debouncedSearchValue,
 					per_page: itemsPerPage,
 					page: currentPage,
@@ -62,9 +62,9 @@ const MainContent = () => {
 
 	return (
 		<Box as="main">
-			<Container pt={{ base: "8", lg: "12" }} pb={{ base: "8" }}>
-				<Stack gap={{ base: "8", lg: "6" }} align="center">
-					<Heading size={{ base: "xs", md: "md", lg: "lg" }} fontWeight="bold" textAlign="center">
+			<Container pt={{ base: '8', lg: '12' }} pb={{ base: '8' }}>
+				<Stack gap={{ base: '8', lg: '6' }} align="center">
+					<Heading size={{ base: 'xs', md: 'md', lg: 'lg' }} fontWeight="bold" textAlign="center">
 						Discover interesting open-source projects
 					</Heading>
 
@@ -84,7 +84,7 @@ const MainContent = () => {
 					/>
 				)}
 
-				<Container py={{ base: "4", md: "8" }} justifyItems="center">
+				<Container py={{ base: '4', md: '8' }} justifyItems="center">
 					{searchQuery.isFetching && searchValue.length && <SkeletonLoader />}
 
 					{!searchQuery.isFetching && searchValue.length && data?.length ? <ItemsContainer items={data} /> : null}

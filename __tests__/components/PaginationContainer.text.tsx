@@ -1,10 +1,10 @@
-import { screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import PaginationContainer from "../../src/components/PaginationContainer";
-import { renderWithTheme } from "../../test-utils";
+import { screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import PaginationContainer from '../../src/components/PaginationContainer';
+import { renderWithTheme } from '../../test-utils';
 
-describe("PaginationContainer", () => {
-	it("should render", () => {
+describe('PaginationContainer', () => {
+	it('should render', () => {
 		renderWithTheme(
 			<PaginationContainer
 				currentPage={1}
@@ -17,12 +17,12 @@ describe("PaginationContainer", () => {
 				pagesCount={0}
 			/>,
 		);
-		const elem = screen.getByTestId("pagination-container");
+		const elem = screen.getByTestId('pagination-container');
 		expect(elem).toBeInTheDocument();
 	});
 
-	describe("should render the correct text", () => {
-		it("with valid props", () => {
+	describe('should render the correct text', () => {
+		it('with valid props', () => {
 			const resultsTotal = 25;
 			const currentPage = 2;
 			const itemsPerPage = 10;
@@ -41,7 +41,7 @@ describe("PaginationContainer", () => {
 					onPageChange={() => null}
 				/>,
 			);
-			const elem = screen.getByTestId("pagination-results-text");
+			const elem = screen.getByTestId('pagination-results-text');
 
 			const from = (currentPage - 1) * itemsPerPage + 1;
 			const to = currentPage * itemsPerPage;
@@ -50,7 +50,7 @@ describe("PaginationContainer", () => {
 			expect(elem.textContent).toBe(expectedText);
 		});
 
-		it("when on the first page", () => {
+		it('when on the first page', () => {
 			const resultsTotal = 25;
 			const currentPage = 1;
 			const itemsPerPage = 10;
@@ -69,7 +69,7 @@ describe("PaginationContainer", () => {
 					onPageChange={() => null}
 				/>,
 			);
-			const elem = screen.getByTestId("pagination-results-text");
+			const elem = screen.getByTestId('pagination-results-text');
 
 			const from = 1;
 			const expectedText = `Showing ${from} - ${itemsPerPage} of ${resultsTotal} results.`;
@@ -77,7 +77,7 @@ describe("PaginationContainer", () => {
 			expect(elem.textContent).toBe(expectedText);
 		});
 
-		it("when there is only one page", () => {
+		it('when there is only one page', () => {
 			const resultsTotal = 8;
 			const currentPage = 1;
 			const itemsPerPage = 10;
@@ -96,7 +96,7 @@ describe("PaginationContainer", () => {
 					onPageChange={() => null}
 				/>,
 			);
-			const elem = screen.getByTestId("pagination-results-text");
+			const elem = screen.getByTestId('pagination-results-text');
 
 			const from = 1;
 			const expectedText = `Showing ${from} - ${resultsTotal} of ${resultsTotal} results.`;
@@ -104,7 +104,7 @@ describe("PaginationContainer", () => {
 			expect(elem.textContent).toBe(expectedText);
 		});
 
-		it("when resultsTotal is less than itemsPerPage", () => {
+		it('when resultsTotal is less than itemsPerPage', () => {
 			const resultsTotal = 5;
 			const currentPage = 1;
 			const itemsPerPage = 5;
@@ -125,12 +125,12 @@ describe("PaginationContainer", () => {
 
 			const from = 1;
 			const expectedText = `Showing ${from} - ${resultsTotal} of ${resultsTotal} results.`;
-			const elem = screen.getByTestId("pagination-results-text");
+			const elem = screen.getByTestId('pagination-results-text');
 
 			expect(elem.textContent).toBe(expectedText);
 		});
 
-		it("when itemsPerPage is less than resultsTotal", () => {
+		it('when itemsPerPage is less than resultsTotal', () => {
 			const resultsTotal = 22;
 			const currentPage = 1;
 			const itemsPerPage = 10;
@@ -148,7 +148,7 @@ describe("PaginationContainer", () => {
 					pagesCount={0}
 				/>,
 			);
-			const elem = screen.getByTestId("pagination-results-text");
+			const elem = screen.getByTestId('pagination-results-text');
 
 			const from = 1;
 			const expectedText = `Showing ${from} - ${itemsPerPage} of ${resultsTotal} results.`;

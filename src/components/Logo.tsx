@@ -1,7 +1,7 @@
-import type { HTMLChakraProps } from "@chakra-ui/react";
-import { chakra } from "@chakra-ui/react";
+import type { HTMLChakraProps } from '@chakra-ui/react';
+import { chakra } from '@chakra-ui/react';
 
-interface LogoProps extends HTMLChakraProps<"svg"> {
+interface LogoProps extends HTMLChakraProps<'svg'> {
 	showSlogan?: boolean;
 }
 const Logo = ({ showSlogan = true, ...props }: LogoProps) => (
@@ -93,7 +93,7 @@ const Logo = ({ showSlogan = true, ...props }: LogoProps) => (
 										height={props.height ? parseInt(props.height as string) - 2 : 57.24292284692861}
 										filter="colorsb6014079110"
 										className="image-svg-svg primary"
-										style={{ overflow: "visible" }}
+										style={{ overflow: 'visible' }}
 									>
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +115,7 @@ const Logo = ({ showSlogan = true, ...props }: LogoProps) => (
 						</g>
 					</g>
 					<g transform={`translate(${props.height ? 61 * 0.55 : 61}, ${props.height ? 0 : 4.770143064089304})`}>
-						<g fill="#171923" transform={`${props.height ? "scale(0.55)" : "scale(1)"}`}>
+						<g fill="#171923" transform={`${props.height ? 'scale(0.55)' : 'scale(1)'}`}>
 							<path
 								d="M44.78-46.40L44.78 0L32.18 0L32.18-18.92L17.61-18.92L17.61 0L5.01 0L5.01-46.40L17.61-46.40L17.61-29.20L32.18-29.20L32.18-46.40L44.78-46.40Z"
 								transform="translate(-5.0146484375, 47.06787109375)"
@@ -123,7 +123,7 @@ const Logo = ({ showSlogan = true, ...props }: LogoProps) => (
 						</g>
 					</g>
 					<g transform={`translate(${props.height ? 104 * 0.55 : 104}, ${props.height ? 0 : 4.770143064089304})`}>
-						<g fill="#171923" transform={`${props.height ? "scale(0.55)" : "scale(1)"}`}>
+						<g fill="#171923" transform={`${props.height ? 'scale(0.55)' : 'scale(1)'}`}>
 							<path
 								d="M20.73-16.88L17.55-16.88L17.55 0L5.01 0L5.01-46.40L20.22-46.40Q39.13-46.40 39.13-32.69L39.13-32.69Q39.13-24.63 31.26-20.22L31.26-20.22L44.78 0L30.56 0L20.73-16.88ZM17.55-36.91L17.55-26.31L19.90-26.31Q26.47-26.31 26.47-32.12L26.47-32.12Q26.47-36.91 20.03-36.91L20.03-36.91L17.55-36.91Z"
 								transform="translate(-5.0146484375, 47.06787109375)"
@@ -131,7 +131,7 @@ const Logo = ({ showSlogan = true, ...props }: LogoProps) => (
 						</g>
 					</g>
 					<g transform={`translate(${props.height ? 147 * 0.55 : 147}, ${props.height ? 0 : 4.770143064089304})`}>
-						<g fill="#171923" transform={`${props.height ? "scale(0.55)" : "scale(1)"}`}>
+						<g fill="#171923" transform={`${props.height ? 'scale(0.55)' : 'scale(1)'}`}>
 							<path
 								d="M35.36-14.09L35.36-14.09Q35.36-9.78 33.17-6.43Q30.98-3.08 26.85-1.22Q22.72 0.63 17.17 0.63L17.17 0.63Q12.54 0.63 9.39-0.02Q6.25-0.67 2.86-2.29L2.86-2.29L2.86-13.46Q6.44-11.62 10.31-10.58Q14.19-9.55 17.42-9.55L17.42-9.55Q20.22-9.55 21.52-10.52Q22.82-11.49 22.82-13.01L22.82-13.01Q22.82-13.96 22.30-14.68Q21.77-15.39 20.61-16.12Q19.46-16.85 14.44-19.11L14.44-19.11Q9.90-21.17 7.63-23.11Q5.36-25.04 4.27-27.55Q3.17-30.06 3.17-33.48L3.17-33.48Q3.17-39.90 7.84-43.48Q12.50-47.07 20.66-47.07L20.66-47.07Q27.87-47.07 35.36-43.74L35.36-43.74L31.52-34.06Q25.01-37.04 20.28-37.04L20.28-37.04Q17.84-37.04 16.73-36.18Q15.62-35.32 15.62-34.06L15.62-34.06Q15.62-32.69 17.03-31.61Q18.44-30.53 24.69-27.68L24.69-27.68Q30.69-24.98 33.02-21.88Q35.36-18.79 35.36-14.09Z"
 								transform="translate(-2.8564453125, 47.06787109375)"

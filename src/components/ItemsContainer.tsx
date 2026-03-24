@@ -1,8 +1,8 @@
-import { SimpleGrid, useBreakpointValue } from "@chakra-ui/react";
-import Item from "./Item";
-import type { components } from "@octokit/openapi-types";
+import { SimpleGrid, useBreakpointValue } from '@chakra-ui/react';
+import Item from './Item';
+import type { components } from '@octokit/openapi-types';
 
-export type Repository = components["schemas"]["repo-search-result-item"];
+export type Repository = components['schemas']['repo-search-result-item'];
 
 const ItemsContainer = ({ items }: { items: Repository[] }) => {
 	const columnsNumber = useBreakpointValue(
@@ -12,7 +12,7 @@ const ItemsContainer = ({ items }: { items: Repository[] }) => {
 			lg: 3,
 		},
 		{
-			fallback: "lg",
+			fallback: 'lg',
 		},
 	);
 

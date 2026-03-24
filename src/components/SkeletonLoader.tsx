@@ -1,4 +1,4 @@
-import { Box, SimpleGrid, SkeletonCircle, SkeletonText, useBreakpoint, useBreakpointValue } from "@chakra-ui/react";
+import { Box, SimpleGrid, SkeletonCircle, SkeletonText, useBreakpoint, useBreakpointValue } from '@chakra-ui/react';
 
 const SkeletonLoader = () => {
 	const columnsNumber = useBreakpointValue(
@@ -8,7 +8,7 @@ const SkeletonLoader = () => {
 			lg: 3,
 		},
 		{
-			fallback: "lg",
+			fallback: 'lg',
 		},
 	);
 	const breakpoint = useBreakpoint({ ssr: false });
@@ -23,7 +23,7 @@ const SkeletonLoader = () => {
 				<SkeletonCircle size="10" />
 				<SkeletonText mt="4" noOfLines={4} gap="4" />
 			</Box>
-			{breakpoint !== "md" && (
+			{breakpoint !== 'md' && (
 				<Box padding="6" boxShadow="lg" bg="white">
 					<SkeletonCircle size="10" />
 					<SkeletonText mt="4" noOfLines={4} gap="4" />
