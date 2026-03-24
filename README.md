@@ -32,7 +32,3 @@ Add the following variables to your `.env` and then hit `npm install` & `npm run
 ## Deployment
 
 Use Vercel or Netlify :)
-
-## TODOs
-
-Search "TODO" inside the repo.
