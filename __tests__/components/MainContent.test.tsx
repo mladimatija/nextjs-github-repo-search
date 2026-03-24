@@ -229,8 +229,8 @@ describe('MainContent', () => {
 		await waitFor(() => expect(screen.getByText('repo1')).toBeInTheDocument());
 
 		// Two pages: page 1 (current) and page 2 — click page 2
-		const page2Buttons = await screen.findAllByRole('button', { name: '2' });
-		await user.click(page2Buttons[0]);
+		const [page2Button] = await screen.findAllByRole('button', { name: '2' });
+		await user.click(page2Button!);
 
 		await waitFor(() => {
 			// After clicking page 2 the component re-queries with page: 2
