@@ -3,9 +3,9 @@ import { render } from "@testing-library/react";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import { system } from "./src/pages/_app";
-import type { FC17, JSXElementConstructor, ReactElement } from "react";
+import type { FC, JSXElementConstructor, ReactElement, ReactNode } from "react";
 
-const Wrapper: FC17 = ({ children }) => {
+const Wrapper: FC<{ children: ReactNode }> = ({ children }) => {
 	return <ChakraProvider value={system}>{children}</ChakraProvider>;
 };
 

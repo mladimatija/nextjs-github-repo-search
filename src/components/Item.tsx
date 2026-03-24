@@ -37,28 +37,11 @@ const Item = ({ data }: { data: Repository }) => {
 				</Container>
 
 				<Container px={0} paddingTop={2}>
-					{data.owner && (
-						<ItemStat
-							icon={FiUser}
-							href={data.owner.html_url}
-							label={data.owner.login}
-							title="Author"
-						/>
-					)}
+					{data.owner && <ItemStat icon={FiUser} href={data.owner.html_url} label={data.owner.login} title="Author" />}
 
-					<ItemStat
-						icon={FiStar}
-						href={data.html_url + "/stargazers"}
-						label={data.stargazers_count}
-						title="Stars"
-					/>
+					<ItemStat icon={FiStar} href={data.html_url + "/stargazers"} label={data.stargazers_count} title="Stars" />
 
-					<ItemStat
-						icon={FiEye}
-						href={data.html_url + "/watchers"}
-						label={data.watchers_count}
-						title="Watchers"
-					/>
+					<ItemStat icon={FiEye} href={data.html_url + "/watchers"} label={data.watchers_count} title="Watchers" />
 
 					<ItemStat
 						icon={AiOutlineFork}
@@ -68,12 +51,7 @@ const Item = ({ data }: { data: Repository }) => {
 					/>
 
 					{data.license && (
-						<ItemStat
-							icon={TbLicense}
-							href={data.license.url ?? ""}
-							label={data.license.name}
-							title="License"
-						/>
+						<ItemStat icon={TbLicense} href={data.license.url ?? ""} label={data.license.name} title="License" />
 					)}
 				</Container>
 			</Flex>

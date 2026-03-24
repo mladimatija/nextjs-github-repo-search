@@ -6,7 +6,7 @@ import { z } from "zod";
  * This way you can ensure the app isn't built with invalid env vars.
  */
 export const serverSchema = z.object({
-  NODE_ENV: z.enum(["development", "test", "production"]),
+	NODE_ENV: z.enum(["development", "test", "production"]),
 });
 
 /**
@@ -15,7 +15,7 @@ export const serverSchema = z.object({
  * @type {{ [k in keyof z.input<typeof serverSchema>]: string | undefined }}
  */
 export const serverEnv = {
-  NODE_ENV: process.env.NODE_ENV,
+	NODE_ENV: process.env.NODE_ENV,
 };
 
 /**
@@ -24,7 +24,7 @@ export const serverEnv = {
  * To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
 export const clientSchema = z.object({
-  NEXT_PUBLIC_GITHUB_TOKEN: z.string(),
+	NEXT_PUBLIC_GITHUB_TOKEN: z.string(),
 });
 
 /**
@@ -34,5 +34,5 @@ export const clientSchema = z.object({
  * @type {{ [k in keyof z.input<typeof clientSchema>]: string | undefined }}
  */
 export const clientEnv = {
-  NEXT_PUBLIC_GITHUB_TOKEN: process.env.NEXT_PUBLIC_GITHUB_TOKEN,
+	NEXT_PUBLIC_GITHUB_TOKEN: process.env.NEXT_PUBLIC_GITHUB_TOKEN,
 };

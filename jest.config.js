@@ -1,16 +1,15 @@
- 
+// Skip env validation during tests — NEXT_PUBLIC_GITHUB_TOKEN is not available in CI
+process.env.SKIP_ENV_VALIDATION = "1";
+
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const nextJest = require('next/jest');
+const nextJest = require("next/jest");
 
 const createJestConfig = nextJest({
-	// Provide the path to your Next.js app to load next.config.js and .env files in your test environment
 	dir: "./",
 });
 
-// Add any custom config to be passed to Jest
 const customJestConfig = {
 	collectCoverage: true,
-	// on node 14.x coverage provider v8 offers good speed and more or less good report
 	coverageProvider: "v8",
 	collectCoverageFrom: [
 		"**/*.{js,jsx,ts,tsx}",
@@ -34,7 +33,7 @@ const customJestConfig = {
 		// https://jestjs.io/docs/webpack#handling-static-assets
 		"^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$/i": `<rootDir>/__mocks__/fileMock.js`,
 
-		// Handle module aliases (this will be automatically configured for you soon)
+		// Path aliases mirroring tsconfig.json "paths"
 		"^@/components/(.*)$": "<rootDir>/components/$1",
 		"^@/pages/(.*)$": "<rootDir>/pages/$1",
 	},
@@ -45,10 +44,7 @@ const customJestConfig = {
 		// https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object
 		"^.+\\.(js|jsx|ts|tsx)$": ["babel-jest", { presets: ["next/babel"] }],
 	},
-	transformIgnorePatterns: [
-		"/node_modules/(?!(octokit|@octokit|use-debounce)/)",
-		"^.+\\.module\\.(css|sass|scss)$"
-	],
+	transformIgnorePatterns: ["/node_modules/(?!(octokit|@octokit|use-debounce)/)", "^.+\\.module\\.(css|sass|scss)$"],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

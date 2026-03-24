@@ -16,22 +16,12 @@ const Footer = () => (
 				</Link>
 				<ButtonGroup variant="ghost">
 					<Link href="https://github.com/mladimatija/nextjs-github-repo-search" target="_blank">
-						<IconButton
-							aria-label="GitHub"
-							title="GitHub"
-							marginRight={-3}
-							_hover={{ color: "blue.500" }}
-						>
+						<IconButton aria-label="GitHub" title="GitHub" marginRight={-3} _hover={{ color: "blue.500" }}>
 							<FaGithub fontSize="1.25rem" />
 						</IconButton>
 					</Link>
 					<Link href="https://www.linkedin.com/in/matijaculjak" target="_blank">
-						<IconButton
-							title="LinkedIn"
-							aria-label="LinkedIn"
-							marginRight={-3}
-							_hover={{ color: "blue.500" }}
-						>
+						<IconButton title="LinkedIn" aria-label="LinkedIn" marginRight={-3} _hover={{ color: "blue.500" }}>
 							<FaLinkedin fontSize="1.25rem" />
 						</IconButton>
 					</Link>

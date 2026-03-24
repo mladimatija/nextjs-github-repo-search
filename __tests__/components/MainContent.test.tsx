@@ -3,8 +3,7 @@ import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import MainContent from "../../src/components/MainContent";
 import { renderWithTheme } from "../../test-utils";
-import type { FC17 } from "react";
-import React from "react";
+import type { FC, ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Octokit } from "octokit";
 
@@ -17,7 +16,7 @@ jest.mock("use-debounce", () => ({
 }));
 
 describe("MainContent", () => {
-	const CreateQueryWrapper: FC17 = ({ children }) => {
+	const CreateQueryWrapper: FC<{ children: ReactNode }> = ({ children }) => {
 		// creates a new QueryClient for each test with disabled retries
 		const queryClient = new QueryClient({
 			defaultOptions: {
@@ -37,7 +36,7 @@ describe("MainContent", () => {
 		renderWithTheme(
 			<CreateQueryWrapper>
 				<MainContent />
-			</CreateQueryWrapper>
+			</CreateQueryWrapper>,
 		);
 
 		expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Discover interesting open-source projects");
@@ -54,7 +53,7 @@ describe("MainContent", () => {
 				stargazers_count: 10,
 				watchers_count: 5,
 				forks_count: 2,
-				owner: { login: "testuser", html_url: "https://github.com/testuser" }
+				owner: { login: "testuser", html_url: "https://github.com/testuser" },
 			},
 			{
 				id: 2,
@@ -64,24 +63,27 @@ describe("MainContent", () => {
 				stargazers_count: 20,
 				watchers_count: 10,
 				forks_count: 5,
-				owner: { login: "testuser2", html_url: "https://github.com/testuser2" }
+				owner: { login: "testuser2", html_url: "https://github.com/testuser2" },
 			},
 		];
 
 		const mockRequest = jest.fn().mockResolvedValue({
-			data: { items: mockData, total_count: 2 }
+			data: { items: mockData, total_count: 2 },
 		});
 
-		(Octokit as jest.MockedClass<typeof Octokit>).mockImplementation(() => ({
-			request: mockRequest,
-		} as never));
+		(Octokit as jest.MockedClass<typeof Octokit>).mockImplementation(
+			() =>
+				({
+					request: mockRequest,
+				}) as never,
+		);
 
 		const user = userEvent.setup();
 
 		renderWithTheme(
 			<CreateQueryWrapper>
 				<MainContent />
-			</CreateQueryWrapper>
+			</CreateQueryWrapper>,
 		);
 
 		const searchInput = screen.getByPlaceholderText("Search by name, description, tags...");
@@ -92,7 +94,7 @@ describe("MainContent", () => {
 			expect(mockRequest).toHaveBeenCalledWith("GET /search/repositories", {
 				q: "react",
 				per_page: 12,
-				page: 1
+				page: 1,
 			});
 		});
 
@@ -104,19 +106,22 @@ describe("MainContent", () => {
 
 	test("displays 'No results found' when search has no results", async () => {
 		const mockRequest = jest.fn().mockResolvedValue({
-			data: { items: [], total_count: 0 }
+			data: { items: [], total_count: 0 },
 		});
 
-		(Octokit as jest.MockedClass<typeof Octokit>).mockImplementation(() => ({
-			request: mockRequest,
-		} as never));
+		(Octokit as jest.MockedClass<typeof Octokit>).mockImplementation(
+			() =>
+				({
+					request: mockRequest,
+				}) as never,
+		);
 
 		const user = userEvent.setup();
 
 		renderWithTheme(
 			<CreateQueryWrapper>
 				<MainContent />
-			</CreateQueryWrapper>
+			</CreateQueryWrapper>,
 		);
 
 		const searchInput = screen.getByPlaceholderText("Search by name, description, tags...");

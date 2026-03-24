@@ -5,14 +5,7 @@ interface LogoProps extends HTMLChakraProps<"svg"> {
 	showSlogan?: boolean;
 }
 const Logo = ({ showSlogan = true, ...props }: LogoProps) => (
-	<chakra.svg
-		color="accent"
-		height="72px"
-		width="auto"
-		maxWidth="180px"
-		xmlns="http://www.w3.org/2000/svg"
-		{...props}
-	>
+	<chakra.svg color="accent" height="72px" width="auto" maxWidth="180px" xmlns="http://www.w3.org/2000/svg" {...props}>
 		<chakra.svg
 			version="1.0"
 			xmlns="http://www.w3.org/2000/svg"

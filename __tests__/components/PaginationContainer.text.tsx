@@ -1,7 +1,7 @@
-import {screen} from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import PaginationContainer from "../../src/components/PaginationContainer";
-import {renderWithTheme} from "../../test-utils";
+import { renderWithTheme } from "../../test-utils";
 
 describe("PaginationContainer", () => {
 	it("should render", () => {
@@ -15,7 +15,7 @@ describe("PaginationContainer", () => {
 				onPageChange={() => null}
 				resultsTotal={0}
 				pagesCount={0}
-			/>
+			/>,
 		);
 		const elem = screen.getByTestId("pagination-container");
 		expect(elem).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe("PaginationContainer", () => {
 					isFetching={false}
 					itemsCount={resultsTotal}
 					onPageChange={() => null}
-				/>
+				/>,
 			);
 			const elem = screen.getByTestId("pagination-results-text");
 
@@ -67,7 +67,7 @@ describe("PaginationContainer", () => {
 					isFetching={false}
 					itemsCount={resultsTotal}
 					onPageChange={() => null}
-				/>
+				/>,
 			);
 			const elem = screen.getByTestId("pagination-results-text");
 
@@ -94,7 +94,7 @@ describe("PaginationContainer", () => {
 					isFetching={false}
 					itemsCount={resultsTotal}
 					onPageChange={() => null}
-				/>
+				/>,
 			);
 			const elem = screen.getByTestId("pagination-results-text");
 
@@ -119,7 +119,8 @@ describe("PaginationContainer", () => {
 					isFetching={false}
 					itemsCount={resultsTotal}
 					onPageChange={() => null}
-					pagesCount={0}/>
+					pagesCount={0}
+				/>,
 			);
 
 			const from = 1;
@@ -145,7 +146,7 @@ describe("PaginationContainer", () => {
 					itemsCount={25}
 					onPageChange={() => null}
 					pagesCount={0}
-				/>
+				/>,
 			);
 			const elem = screen.getByTestId("pagination-results-text");
 

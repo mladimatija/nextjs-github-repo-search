@@ -13,7 +13,7 @@ const ItemsContainer = ({ items }: { items: Repository[] }) => {
 		},
 		{
 			fallback: "lg",
-		}
+		},
 	);
 
 	return (

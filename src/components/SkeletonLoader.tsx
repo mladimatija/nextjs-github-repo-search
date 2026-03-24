@@ -9,7 +9,7 @@ const SkeletonLoader = () => {
 		},
 		{
 			fallback: "lg",
-		}
+		},
 	);
 	const breakpoint = useBreakpoint({ ssr: false });
 

@@ -16,13 +16,17 @@ Solved by debouncing the search input value using the `use-debounce` library.
 
 - [Next.js 16](https://nextjs.org)
 - [React 19](https://react.dev)
+- [TypeScript 5](https://www.typescriptlang.org/)
 - [Chakra UI v3](https://chakra-ui.com/)
 - [TanStack Query v5](https://tanstack.com/query)
 - [Octokit](https://github.com/octokit/octokit.js)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [use-debounce](https://github.com/xnimorz/use-debounce)
 
 ## Installation
 
 Add the following variables to your `.env` and then hit `npm install` & `npm run dev`:
+
 - NEXT_PUBLIC_GITHUB_TOKEN
 
 ## Deployment

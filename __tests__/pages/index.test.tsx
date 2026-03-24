@@ -17,7 +17,7 @@ describe("Home page", () => {
 		renderWithTheme(
 			<QueryClientProvider client={queryClient}>
 				<Home />
-			</QueryClientProvider>
+			</QueryClientProvider>,
 		);
 
 		const main = screen.getAllByRole("main");
