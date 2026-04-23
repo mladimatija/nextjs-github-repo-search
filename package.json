@@ -19,12 +19,11 @@
 		"@emotion/styled": "^11.14.1",
 		"@octokit/openapi-types": "^27.0.0",
 		"@tanstack/react-query": "^5.95.2",
-		"eslint-config-prettier": "^10.1.8",
-		"next": "16.2.1",
+		"next": "16.2.4",
 		"octokit": "^5.0.5",
 		"prettier": "^3.8.1",
-		"react": "19.2.4",
-		"react-dom": "19.2.4",
+		"react": "19.2.5",
+		"react-dom": "19.2.5",
 		"react-icons": "^5.6.0",
 		"use-debounce": "^10.1.0",
 		"zod": "^4.3.6"
@@ -39,13 +38,10 @@
 		"@types/react": "19.2.14",
 		"@types/react-dom": "19.2.3",
 		"eslint": "^9.39.4",
-		"eslint-config-next": "16.2.1",
+		"eslint-config-next": "16.2.4",
+		"eslint-config-prettier": "^10.1.8",
 		"jest": "^30.3.0",
 		"jest-environment-jsdom": "^30.3.0",
-		"typescript": "^5.9.3"
-	},
-	"overrides": {
-		"@types/react": "19.2.14",
-		"@types/react-dom": "19.2.3"
+		"typescript": "6.0.3"
 	}
 }
