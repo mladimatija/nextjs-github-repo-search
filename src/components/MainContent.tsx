@@ -37,25 +37,38 @@ const SORT_OPTIONS: { value: SortOption; label: string }[] = [
 	{ value: 'help-wanted-issues', label: 'Help wanted' },
 ];
 
+type SearchParams = {
+	searchValue: string;
+	currentPage: number;
+	sort: SortOption;
+	language: string;
+};
+
 const MainContent = () => {
 	const router = useRouter();
 	const itemsPerPage = 12;
 
-	const [searchValue, setSearchValue] = useState('');
-	const [currentPage, setCurrentPage] = useState(1);
-	const [sort, setSort] = useState<SortOption>('best-match');
-	const [language, setLanguage] = useState('');
+	const [params, setParams] = useState<SearchParams>({
+		searchValue: '',
+		currentPage: 1,
+		sort: 'best-match',
+		language: '',
+	});
 
-	// Read search state from URL query params once the router is ready
+	const { searchValue, currentPage, sort, language } = params;
+
+	// Read search state from URL query params once the router is ready (single setState call avoids cascading renders)
 	const initialized = useRef(false);
 	useEffect(() => {
 		if (!router.isReady || initialized.current) return;
 		initialized.current = true;
 		const { q, page, sort: s, lang } = router.query;
-		if (q) setSearchValue(String(q));
-		if (page) setCurrentPage(Number(page));
-		if (s && SORT_OPTIONS.some((o) => o.value === s)) setSort(s as SortOption);
-		if (lang) setLanguage(String(lang));
+		setParams({
+			searchValue: q ? String(q) : '',
+			currentPage: page ? Number(page) : 1,
+			sort: s && SORT_OPTIONS.some((o) => o.value === s) ? (s as SortOption) : 'best-match',
+			language: lang ? String(lang) : '',
+		});
 	}, [router.isReady, router.query]);
 
 	// Keep URL in sync with search state (shallow routing, no full page reload)
@@ -75,11 +88,6 @@ const MainContent = () => {
 
 	// Memoised so the Octokit instance (and its auth token) is created only once per mount
 	const octokit = useMemo(() => new Octokit({ auth: process.env.NEXT_PUBLIC_GITHUB_TOKEN }), []);
-
-	// Reset to page 1 whenever the effective search changes so stale pages aren't requested
-	useEffect(() => {
-		setCurrentPage(1);
-	}, [debouncedSearchValue, debouncedLanguage, sort]);
 
 	const effectiveQuery = [debouncedSearchValue, debouncedLanguage ? `language:${debouncedLanguage}` : '']
 		.filter(Boolean)
@@ -113,7 +121,8 @@ const MainContent = () => {
 		limits: { outer: 1, inner: 1 },
 	});
 
-	const handlePageChange = (nextPage: number): void => setCurrentPage(nextPage);
+	const handlePageChange = (nextPage: number) => setParams((p) => ({ ...p, currentPage: nextPage }));
+	const handleSearchValueChange = (value: string) => setParams((p) => ({ ...p, searchValue: value, currentPage: 1 }));
 
 	return (
 		<Box as="main">
@@ -123,13 +132,13 @@ const MainContent = () => {
 						Discover interesting open-source projects
 					</Heading>
 
-					<SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
+					<SearchBar searchValue={searchValue} setSearchValue={handleSearchValueChange} />
 
 					<Flex gap={3} width="100%" maxW={{ base: 'lg', md: 'md', lg: 'lg' }} wrap="wrap">
 						<NativeSelectRoot flex="1" minW="36">
 							<NativeSelectField
 								value={sort}
-								onChange={(e) => setSort(e.target.value as SortOption)}
+								onChange={(e) => setParams((p) => ({ ...p, sort: e.target.value as SortOption, currentPage: 1 }))}
 								aria-label="Sort results"
 							>
 								{SORT_OPTIONS.map((o) => (
@@ -146,7 +155,7 @@ const MainContent = () => {
 							minW="36"
 							placeholder="Language (e.g. typescript)"
 							value={language}
-							onChange={(e) => setLanguage(e.target.value)}
+							onChange={(e) => setParams((p) => ({ ...p, language: e.target.value, currentPage: 1 }))}
 							aria-label="Filter by language"
 						/>
 					</Flex>
